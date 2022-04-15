@@ -18,9 +18,10 @@ parser = argparse.ArgumentParser(
     description="A simple command line dictionary that takes a single positional argument, queries Merriam Webster's Collegiate Dictionary API and returns parts of speech and definitions for the queried words"
 )
 parser.add_argument('word',
-                    help="The word to be searched. To enter a phrase, enclose the phrase in quotation marks.")
+                    help="The word to be searched.",
+                    nargs="*")
 arg = parser.parse_args()
-query = arg.word
+query = " ".join(arg.word)
 
 url = f"https://www.dictionaryapi.com/api/v3/references/collegiate/json/{query}?key={API_KEY}"
 
